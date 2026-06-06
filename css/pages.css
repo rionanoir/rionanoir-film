@@ -1,0 +1,94 @@
+#site {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.7s ease 0.4s;
+}
+
+#site.show { opacity: 1; pointer-events: all; }
+
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 32px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+
+.logo { font-size: 13px; color: #f0f0ee; letter-spacing: 1px; }
+
+#content { flex: 1; overflow: hidden; position: relative; }
+
+.view {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 2rem;
+}
+
+.view.active { opacity: 1; pointer-events: all; }
+
+.view-title {
+  font-size: clamp(32px, 6vw, 64px);
+  color: #f0f0ee; text-transform: uppercase;
+  letter-spacing: 6px; font-weight: 700;
+  line-height: 1; margin-bottom: 10px;
+}
+
+.view-sub {
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-bottom: 32px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px; width: 100%; max-width: 480px;
+}
+
+.photo-cell { aspect-ratio: 1; border-radius: 1px; transition: opacity 0.2s; }
+.photo-cell:hover { opacity: 0.75; cursor: pointer; }
+
+.pc1 { background: radial-gradient(ellipse at 40% 50%, #3a3a3a, #111); }
+.pc2 { background: radial-gradient(ellipse at 60% 30%, #444, #1a1a1a); }
+.pc3 { background: radial-gradient(ellipse at 50% 70%, #333, #0d0d0d); }
+.pc4 { background: radial-gradient(ellipse at 30% 40%, #555, #222); }
+.pc5 { background: radial-gradient(ellipse at 70% 60%, #3d3d3d, #111); }
+.pc6 { background: radial-gradient(ellipse at 50% 50%, #484848, #181818); }
+
+.sub-projects {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 24px;
+}
+
+.sub-btn {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  padding: 6px 14px; border-radius: 2px; cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sub-btn:hover, .sub-btn.active {
+  color: #d8d8d6;
+  border-color: rgba(255,255,255,0.5);
+}
+
+.about-text {
+  font-size: 14px; color: rgba(255,255,255,0.6);
+  line-height: 2; max-width: 360px; text-align: center;
+}
+
+.contact-link {
+  margin-top: 24px; font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  border-bottom: 0.5px solid rgba(255,255,255,0.2);
+  padding-bottom: 2px; cursor: pointer; transition: color 0.2s;
+}
+
+.contact-link:hover { color: #f0f0ee; }
+
+@media (max-width: 600px) {
+  nav { padding: 14px 20px; }
+}

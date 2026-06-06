@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rionanoir_film</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/newspaper.css">
+  <link rel="stylesheet" href="css/dice.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- NEWSPAPER STAGE -->
+<div id="stage">
+  <div class="sheet" id="s1">
+    <div class="sheet-photo"></div>
+    <div class="sheet-grain"></div>
+    <div class="sheet-edge"></div>
+    <div class="sheet-text">
+      <div class="sheet-label">Vol. I &mdash; 2025</div>
+      <div class="sheet-title">Photo<br>Journal</div>
+      <div class="sheet-sub">Tokyo &amp; Beyond</div>
+    </div>
+    <div class="tap-hint">tap to open &rarr;</div>
+  </div>
+  <div class="sheet" id="s2">
+    <div class="sheet-photo"></div>
+    <div class="sheet-grain"></div>
+    <div class="sheet-edge"></div>
+    <div class="sheet-text">
+      <div class="sheet-label">Special Issue</div>
+      <div class="sheet-title">On<br>Light</div>
+      <div class="sheet-sub">Light &amp; Shadow</div>
+    </div>
+    <div class="tap-hint">continue &rarr;</div>
+  </div>
+  <div class="sheet" id="s3">
+    <div class="sheet-photo"></div>
+    <div class="sheet-grain"></div>
+    <div class="sheet-edge"></div>
+    <div class="sheet-text">
+      <div class="sheet-label">Portfolio</div>
+      <div class="sheet-title">Enter<br>The<br>Work</div>
+      <div class="sheet-sub">Tap to explore</div>
+    </div>
+    <div class="tap-hint">enter &rarr;</div>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="site">
+  <nav>
+    <div class="logo">rionanoir_film</div>
+  </nav>
+  <div id="content">
+
+    <!-- 1: HOME -->
+    <div class="view active" id="v-1">
+      <div class="view-title">Home</div>
+      <div class="view-sub">Photographer &mdash; Tokyo</div>
+      <div class="photo-grid">
+        <div class="photo-cell pc1"></div>
+        <div class="photo-cell pc2"></div>
+        <div class="photo-cell pc3"></div>
+        <div class="photo-cell pc4"></div>
+        <div class="photo-cell pc5"></div>
+        <div class="photo-cell pc6"></div>
+      </div>
+    </div>
+
+    <!-- 2: PORTRAIT -->
+    <div class="view" id="v-2">
+      <div class="view-title">Portrait</div>
+      <div class="view-sub">Selected works</div>
+      <div class="sub-projects">
+        <div class="sub-btn active" onclick="selectSub(this)">Tap Dance</div>
+        <div class="sub-btn" onclick="selectSub(this)">Clown</div>
+        <div class="sub-btn" onclick="selectSub(this)">Street</div>
+        <div class="sub-btn" onclick="selectSub(this)">Studio</div>
+      </div>
+      <div class="photo-grid">
+        <div class="photo-cell pc2"></div>
+        <div class="photo-cell pc5"></div>
+        <div class="photo-cell pc1"></div>
+        <div class="photo-cell pc3"></div>
+        <div class="photo-cell pc6"></div>
+        <div class="photo-cell pc4"></div>
+      </div>
+    </div>
+
+    <!-- 3: ART -->
+    <div class="view" id="v-3">
+      <div class="view-title">Art</div>
+      <div class="view-sub">Artistic works</div>
+      <div class="photo-grid">
+        <div class="photo-cell pc4"></div>
+        <div class="photo-cell pc1"></div>
+        <div class="photo-cell pc6"></div>
+        <div class="photo-cell pc2"></div>
+        <div class="photo-cell pc3"></div>
+        <div class="photo-cell pc5"></div>
+      </div>
+    </div>
+
+    <!-- 4: NOIR FILM -->
+    <div class="view" id="v-4">
+      <div class="view-title">Noir Film</div>
+      <div class="view-sub">Film photography</div>
+      <div class="photo-grid">
+        <div class="photo-cell pc6"></div>
+        <div class="photo-cell pc3"></div>
+        <div class="photo-cell pc5"></div>
+        <div class="photo-cell pc1"></div>
+        <div class="photo-cell pc4"></div>
+        <div class="photo-cell pc2"></div>
+      </div>
+    </div>
+
+    <!-- 5: ABOUT -->
+    <div class="view" id="v-5">
+      <div class="view-title">About</div>
+      <div class="view-sub">The person behind the lens</div>
+      <div class="about-text">
+        ここに自己紹介文を入れます。<br>
+        あなたのビジョン、撮影への想い、<br>
+        活動拠点など。
+      </div>
+    </div>
+
+    <!-- 6: CONTACT -->
+    <div class="view" id="v-6">
+      <div class="view-title">Contact</div>
+      <div class="view-sub">Get in touch</div>
+      <div class="about-text">
+        お仕事のご依頼、展示のご相談など<br>
+        お気軽にご連絡ください。
+      </div>
+      <div class="contact-link">hello@yourname.com</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3D DICE — top right -->
+<div id="dice-area">
+  <div id="change-label">change the page</div>
+  <div id="dice-scene">
+    <div id="dice-3d">
+      <!-- face 1 (front): HOME — red pip -->
+      <div class="face face-1">
+        <div class="pips">
+          <div class="pip" style="grid-column:2;grid-row:2"></div>
+        </div>
+      </div>
+      <!-- face 2 (right): PORTRAIT -->
+      <div class="face face-2">
+        <div class="pips">
+          <div class="pip" style="grid-column:3;grid-row:1"></div>
+          <div class="pip" style="grid-column:1;grid-row:3"></div>
+        </div>
+      </div>
+      <!-- face 3 (top): ART -->
+      <div class="face face-3">
+        <div class="pips">
+          <div class="pip" style="grid-column:3;grid-row:1"></div>
+          <div class="pip" style="grid-column:2;grid-row:2"></div>
+          <div class="pip" style="grid-column:1;grid-row:3"></div>
+        </div>
+      </div>
+      <!-- face 4 (bottom): NOIR FILM -->
+      <div class="face face-4">
+        <div class="pips">
+          <div class="pip" style="grid-column:1;grid-row:1"></div>
+          <div class="pip" style="grid-column:3;grid-row:1"></div>
+          <div class="pip" style="grid-column:1;grid-row:3"></div>
+          <div class="pip" style="grid-column:3;grid-row:3"></div>
+        </div>
+      </div>
+      <!-- face 5 (left): ABOUT -->
+      <div class="face face-5">
+        <div class="pips">
+          <div class="pip" style="grid-column:1;grid-row:1"></div>
+          <div class="pip" style="grid-column:3;grid-row:1"></div>
+          <div class="pip" style="grid-column:2;grid-row:2"></div>
+          <div class="pip" style="grid-column:1;grid-row:3"></div>
+          <div class="pip" style="grid-column:3;grid-row:3"></div>
+        </div>
+      </div>
+      <!-- face 6 (back): CONTACT -->
+      <div class="face face-6">
+        <div class="pips">
+          <div class="pip" style="grid-column:1;grid-row:1"></div>
+          <div class="pip" style="grid-column:3;grid-row:1"></div>
+          <div class="pip" style="grid-column:1;grid-row:2"></div>
+          <div class="pip" style="grid-column:3;grid-row:2"></div>
+          <div class="pip" style="grid-column:1;grid-row:3"></div>
+          <div class="pip" style="grid-column:3;grid-row:3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/newspaper.js"></script>
+<script src="js/dice.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>
