@@ -124,7 +124,6 @@ nav {
   min-height: 0;
   align-items: center;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
 }
 
 .aw-strip img {
@@ -205,7 +204,6 @@ nav {
   min-height: 0;
   align-items: center;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
 }
 
 /* Portrait/square: fill strip height */

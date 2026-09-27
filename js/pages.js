@@ -59,17 +59,6 @@ if (artVideo) {
   observer.observe(artVideo);
 }
 
-// iOSスクロールリセット: ビューがactiveになるたびにscrollTopをリセットしてiOSのスクロールコンテキストを再初期化
-['v-2', 'v-3', 'v-4'].forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  new MutationObserver(() => {
-    if (el.classList.contains('active')) {
-      requestAnimationFrame(() => { el.scrollTop = 0; });
-    }
-  }).observe(el, { attributes: true, attributeFilter: ['class'] });
-});
-
 const v4el = document.getElementById('v-4');
 
 function resetSoundBtn(btn) {
