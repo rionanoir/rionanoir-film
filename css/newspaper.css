@@ -51,22 +51,22 @@
 }
 
 .sheet-label {
-  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  font-size: 10px; letter-spacing: 4px;
   opacity: 0.6; margin-bottom: 8px;
 }
 
 .sheet-title {
-  font-size: clamp(22px, 5vw, 42px); font-weight: 700;
-  line-height: 1; text-transform: uppercase; margin-bottom: 6px;
+  font-size: clamp(22px, 5vw, 42px);
+  line-height: 1; margin-bottom: 6px;
 }
 
 .sheet-sub {
-  font-size: 11px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5;
+  font-size: 11px; letter-spacing: 2px; opacity: 0.5;
 }
 
 .tap-hint {
   position: absolute; top: 28px; right: 28px;
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 3px;
   color: rgba(255,255,255,0.5);
   animation: blink 2s ease-in-out infinite; z-index: 3;
 }

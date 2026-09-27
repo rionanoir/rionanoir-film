@@ -1,6 +1,7 @@
 const dice3d = document.getElementById('dice-3d');
 const scene  = document.getElementById('dice-scene');
 let current = 1;
+let recentFaces = [1];
 
 function qMul(a, b) {
   return [
@@ -36,17 +37,17 @@ function slerp(a, b, t) {
 
 const FACE_Q = {
   1: [1,0,0,0],
-  2: qAxis(0,1,0,  90),
-  3: qAxis(1,0,0, -90),
-  4: qAxis(1,0,0,  90),
-  5: qAxis(0,1,0, -90),
+  2: qAxis(0,1,0, -90),
+  3: qAxis(1,0,0,  90),
+  4: qAxis(1,0,0, -90),
+  5: qAxis(0,1,0,  90),
   6: qAxis(0,1,0, 180),
 };
 
 const FACE_N = {
   1:[0,0,1],  6:[0,0,-1],
   2:[1,0,0],  5:[-1,0,0],
-  3:[0,-1,0], 4:[0,1,0],
+  3:[0,1,0],  4:[0,-1,0],
 };
 
 function detectFront(q) {
@@ -90,18 +91,39 @@ function goToFace(face, animated) {
 
 function randomRoll() {
   let next;
-  do { next = Math.ceil(Math.random() * 6); } while (next === current);
-  const spinQ = qNorm(qMul(qAxis(0,1,0,360), FACE_Q[next]));
+  do { next = Math.floor(Math.random() * 6) + 1; } while (recentFaces.includes(next));
+  recentFaces = [current, next];
+
+  // relative rotation `delta` that takes the dice from its current
+  // orientation exactly onto the target face: delta * from = to
   const from = [...qCurrent];
+  const to = FACE_Q[next];
+  const fromConj = [from[0], -from[1], -from[2], -from[3]];
+  const delta = qNorm(qMul(to, fromConj));
+  const w = Math.min(1, Math.max(-1, delta[0]));
+  const angleDeg = 2 * Math.acos(w) * 180 / Math.PI;
+  const sinHalf = Math.sqrt(Math.max(0, 1 - w*w));
+  const axis = sinHalf < 1e-6 ? [0,1,0] : [delta[1]/sinHalf, delta[2]/sinHalf, delta[3]/sinHalf];
+
+  // randomize the path: go the "short way" or the "long way" around,
+  // plus a random number of extra full turns — both still land exactly
+  // on `to` since a 360° rotation about any axis is the identity
+  const useAlt = Math.random() < 0.5;
+  const baseAxis = useAlt ? axis.map(v => -v) : axis;
+  const baseAngle = useAlt ? 360 - angleDeg : angleDeg;
+  const spins = 1 + Math.floor(Math.random() * 2);
+  const totalAngle = baseAngle + 360 * spins;
+
   current = next;
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('v-' + next).classList.add('active');
   if (animId) cancelAnimationFrame(animId);
-  const t0 = performance.now(), dur = 520;
+  const t0 = performance.now(), dur = 600 + Math.random() * 200;
   function step(now) {
     const t = Math.min((now - t0) / dur, 1);
     const e = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
-    qCurrent = slerp(from, spinQ, e);
+    const spinQ = qAxis(baseAxis[0], baseAxis[1], baseAxis[2], totalAngle * e);
+    qCurrent = qNorm(qMul(spinQ, from));
     applyQ(qCurrent, false);
     if (t < 1) { animId = requestAnimationFrame(step); }
     else { qCurrent = [...FACE_Q[next]]; applyQ(qCurrent, false); }

@@ -3,5 +3,5 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: #888888;
-  font-family: 'Cutive Mono', monospace;
+  font-family: 'Cutive Mono', 'Shippori Mincho', monospace;
 }
