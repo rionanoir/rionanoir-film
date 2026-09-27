@@ -95,13 +95,18 @@
 
 #dice-scene:hover .face { border-color: rgba(0,0,0,0.25); }
 
+@keyframes dice-slide-in {
+  from { transform: translateX(50px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
 @media (max-width: 600px) {
   #dice-area { top: 16px; right: 16px; gap: 10px; }
   #change-label { font-size: 12px; }
   #dice-scene {
     width: 60px; height: 60px;
     will-change: transform, opacity;
-    -webkit-transform: translateZ(0);
+    animation: dice-slide-in 1.2s 2s 1 ease-out both;
   }
   #dice-3d { width: 60px; height: 60px; }
   .face { width: 60px; height: 60px; border-radius: 9px; }
