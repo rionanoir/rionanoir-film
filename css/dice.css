@@ -97,17 +97,21 @@
 
 @media (max-width: 600px) {
   #dice-area { top: 16px; right: 16px; gap: 10px; }
-  #change-label { font-size: 9px; }
-  #dice-scene { width: 48px; height: 48px; }
-  #dice-3d { width: 48px; height: 48px; }
-  .face { width: 48px; height: 48px; border-radius: 7px; }
-  .face-1 { transform: translateZ(24px); }
-  .face-6 { transform: rotateY(180deg) translateZ(24px); }
-  .face-2 { transform: rotateY(90deg) translateZ(24px); }
-  .face-5 { transform: rotateY(-90deg) translateZ(24px); }
-  .face-3 { transform: rotateX(-90deg) translateZ(24px); }
-  .face-4 { transform: rotateX(90deg) translateZ(24px); }
-  .pips { width: 34px; height: 34px; }
-  .pip { width: 6px; height: 6px; }
-  .face-1 .pip { width: 9px; height: 9px; }
+  #change-label { font-size: 12px; }
+  #dice-scene {
+    width: 60px; height: 60px;
+    will-change: transform, opacity;
+    -webkit-transform: translateZ(0);
+  }
+  #dice-3d { width: 60px; height: 60px; }
+  .face { width: 60px; height: 60px; border-radius: 9px; }
+  .face-1 { transform: translateZ(30px); }
+  .face-6 { transform: rotateY(180deg) translateZ(30px); }
+  .face-2 { transform: rotateY(90deg) translateZ(30px); }
+  .face-5 { transform: rotateY(-90deg) translateZ(30px); }
+  .face-3 { transform: rotateX(-90deg) translateZ(30px); }
+  .face-4 { transform: rotateX(90deg) translateZ(30px); }
+  .pips { width: 42px; height: 42px; }
+  .pip { width: 8px; height: 8px; }
+  .face-1 .pip { width: 11px; height: 11px; }
 }
