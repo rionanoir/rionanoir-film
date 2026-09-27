@@ -25,9 +25,10 @@ nav {
   opacity: 0; pointer-events: none;
   transition: opacity 0.4s ease;
   padding: 2rem;
+  transform: translateX(100%);
 }
 
-.view.active { opacity: 1; pointer-events: all; }
+.view.active { opacity: 1; pointer-events: all; transform: translateX(0); }
 
 .view-title {
   font-size: clamp(32px, 6vw, 64px);
