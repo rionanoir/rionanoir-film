@@ -139,24 +139,24 @@ nav {
 
 @media (max-width: 600px) {
   .aw-section {
-    height: auto;
+    height: 100%;
     padding: 1.5rem 0.5rem 0.75rem;
   }
   .aw-caption {
     margin-bottom: 6px;
   }
   .aw-strip {
-    align-items: flex-start;
-    flex: none;
-    height: auto;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
   }
   .aw-strip img {
     height: auto;
-    max-height: calc(100svh - 100px);
+    max-height: calc(100svh - 120px);
     max-width: 94vw;
   }
   .aw-strip img.ls {
-    max-height: calc(100svh - 100px);
+    max-height: calc(100svh - 120px);
     max-width: 97vw;
   }
 }
@@ -405,6 +405,11 @@ nav {
   .home-slide {
     max-width: 85%;
     max-height: 85%;
+  }
+
+  #v-6 {
+    justify-content: center;
+    padding-top: 3rem;
   }
 }
 
