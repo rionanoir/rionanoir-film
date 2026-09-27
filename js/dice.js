@@ -163,9 +163,10 @@ function pUp() {
   else { goToFace(detectFront(qCurrent), true); }
 }
 
-scene.addEventListener('mousedown', e => { pDown(e.clientX, e.clientY); scene.style.cursor = 'grabbing'; e.preventDefault(); });
+let lastTouchEnd = 0;
+scene.addEventListener('mousedown', e => { if (Date.now() - lastTouchEnd < 500) return; pDown(e.clientX, e.clientY); scene.style.cursor = 'grabbing'; e.preventDefault(); });
 window.addEventListener('mousemove', e => { if (pressing) pMove(e.clientX, e.clientY); });
 window.addEventListener('mouseup', () => pUp());
 scene.addEventListener('touchstart', e => { e.preventDefault(); pDown(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
 scene.addEventListener('touchmove',  e => { e.preventDefault(); pMove(e.touches[0].clientX, e.touches[0].clientY); }, { passive: false });
-scene.addEventListener('touchend',   e => { e.preventDefault(); pUp(); }, { passive: false });
+scene.addEventListener('touchend',   e => { lastTouchEnd = Date.now(); pUp(); }, { passive: false });

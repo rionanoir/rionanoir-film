@@ -59,37 +59,63 @@ if (artVideo) {
   observer.observe(artVideo);
 }
 
-const noirVideo = document.getElementById('noir-video');
-const soundBtn  = document.getElementById('nf-sound-btn');
+const v4el = document.getElementById('v-4');
 
-if (noirVideo) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        noirVideo.play();
-      } else {
-        noirVideo.pause();
-        noirVideo.muted = true;
-        if (soundBtn) {
-          soundBtn.classList.remove('active');
-          soundBtn.querySelector('span').textContent = 'SOUND ON';
-        }
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(noirVideo);
+function resetSoundBtn(btn) {
+  if (!btn) return;
+  btn.classList.remove('active');
+  btn.querySelector('span').textContent = 'SOUND ON';
 }
 
-if (soundBtn && noirVideo) {
-  soundBtn.addEventListener('click', () => {
-    if (noirVideo.muted) {
-      noirVideo.muted = false;
-      soundBtn.classList.add('active');
-      soundBtn.querySelector('span').textContent = 'SOUND OFF';
-    } else {
-      noirVideo.muted = true;
-      soundBtn.classList.remove('active');
-      soundBtn.querySelector('span').textContent = 'SOUND ON';
-    }
+document.querySelectorAll('.nf-video').forEach(video => {
+  const btn = video.closest('.nf-video-wrap').querySelector('.nf-sound-btn');
+
+  // root: v4el — only fires when video enters/leaves v-4's scroll area
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && v4el.classList.contains('active')) {
+        video.currentTime = 0;
+        video.play();
+      } else {
+        video.pause();
+        video.muted = true;
+        resetSoundBtn(btn);
+      }
+    });
+  }, { root: v4el, threshold: 0.5 });
+  observer.observe(video);
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      if (video.muted) {
+        video.muted = false;
+        btn.classList.add('active');
+        btn.querySelector('span').textContent = 'SOUND OFF';
+      } else {
+        video.muted = true;
+        resetSoundBtn(btn);
+      }
+    });
+  }
+});
+
+// v-4がactiveになったら先頭動画を再生、非activeなら全停止
+new MutationObserver(() => {
+  if (v4el.classList.contains('active')) {
+    const first = v4el.querySelector('.nf-video');
+    if (first) { first.currentTime = 0; first.play(); }
+  } else {
+    v4el.querySelectorAll('.nf-video').forEach(v => { v.pause(); v.muted = true; });
+    v4el.querySelectorAll('.nf-sound-btn').forEach(b => resetSoundBtn(b));
+  }
+}).observe(v4el, { attributes: true, attributeFilter: ['class'] });
+
+const copyBtn = document.getElementById('copy-email-btn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('rionanoir53@gmail.com').then(() => {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'rionanoir53@gmail.com'; }, 2000);
+    });
   });
 }
