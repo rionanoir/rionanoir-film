@@ -220,12 +220,14 @@ nav {
   .fp-section {
     padding: 0.75rem 0.25rem 0.5rem;
   }
-  .fp-strip img,
+  .fp-strip img {
+    height: auto;
+    max-height: calc(100svh - 100px);
+    max-width: 94vw;
+  }
   .fp-strip img.ls {
-    height: calc(100svh - 110px);
-    width: auto;
-    max-width: none;
-    max-height: none;
+    max-height: calc(100svh - 100px);
+    max-width: 97vw;
   }
 }
 
