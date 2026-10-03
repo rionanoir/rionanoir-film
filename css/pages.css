@@ -64,6 +64,28 @@ nav {
 .pc6 { background: radial-gradient(ellipse at 50% 50%, #484848, #181818); }
 
 
+/* scroll→ hint */
+@keyframes scroll-hint {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.fp-section::after,
+.aw-section::after,
+.nf-section::after {
+  content: 'scroll →';
+  position: absolute;
+  bottom: 0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: scroll-hint 3s ease-in-out infinite;
+}
+
 /* Home layout — fullscreen slideshow */
 #v-1 {
   overflow: hidden;
@@ -101,6 +123,7 @@ nav {
   box-sizing: border-box;
   scroll-snap-align: start;
   touch-action: pan-y;
+  position: relative;
 }
 
 .aw-section:nth-child(even) {
@@ -186,6 +209,7 @@ nav {
   box-sizing: border-box;
   scroll-snap-align: start;
   touch-action: pan-y;
+  position: relative;
 }
 
 .fp-sec-label {
@@ -303,6 +327,7 @@ nav {
   scroll-snap-align: start;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
+  position: relative;
 }
 
 .nf-section:nth-child(even) {
