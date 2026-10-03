@@ -71,8 +71,7 @@ nav {
 }
 
 .fp-section::after,
-.aw-section::after,
-.nf-section::after {
+.aw-section::after {
   content: 'scroll →';
   position: absolute;
   bottom: 0.9rem;
@@ -88,8 +87,7 @@ nav {
 
 @media (min-width: 601px) {
   .fp-section::after,
-  .aw-section::after,
-  .nf-section::after {
+  .aw-section::after {
     bottom: auto;
     top: 0.9rem;
   }
